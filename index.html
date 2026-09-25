@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desayuno Ancla — Scenario Zero</title>
+<meta name="description" content="Landing de invitación al Desayuno 1 · Ancla de Scenario Zero, 13 de octubre de 2026.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Share+Tech&display=swap">
+<style>
+  :root{
+    --bg:#000119;
+    --panel:#001335;
+    --panel-2:#041a45;
+    --cyan:#19bce8;
+    --glow:#00c8f8;
+    --ink:#eef7fc;
+    --muted:#7f9ac0;
+    --line:rgba(25,188,232,0.22);
+    --danger-slot:#1c2c48;
+    --font-display:'Poppins',ui-sans-serif,system-ui,sans-serif;
+    --font-body:'Poppins',ui-sans-serif,system-ui,sans-serif;
+    --font-data:'Share Tech','Poppins',ui-monospace,monospace;
+    color-scheme: dark;
+  }
+  .ticketcode-card, .ticketcode-card iframe{
+    color-scheme: normal;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    margin:0;
+    padding-inline:20px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1100px;margin:0 auto;}
+  a{color:inherit;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;text-wrap:balance;margin:0;}
+  p{margin:0;line-height:1.6;}
+  .eyebrow{
+    font-family:var(--font-data);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    color:var(--cyan);
+  }
+  .eyebrow.big{
+    font-size:1.05rem;
+    letter-spacing:.1em;
+  }
+  header.site{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-block:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand-logo{
+    display:block;width:92px;height:92px;object-fit:contain;
+  }
+  .institutional-zone{
+    display:flex;align-items:center;gap:16px;
+  }
+  .mintic-seal{display:block;width:46px;height:50px;object-fit:contain;}
+  .pulse{
+    width:100%;height:46px;display:block;margin-block:8px;
+    overflow:visible;
+  }
+  .pulse path{
+    fill:none;stroke:var(--cyan);stroke-width:1.6;
+    stroke-linecap:round;stroke-linejoin:round;
+    filter:drop-shadow(0 0 6px rgba(25,188,232,.55));
+    stroke-dasharray:900;stroke-dashoffset:900;
+    animation:draw 2.4s ease-out forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion:reduce){
+    .pulse path{animation:none;stroke-dashoffset:0;}
+  }
+  .hero{
+    position:relative;
+    padding-block:56px 40px;
+    isolation:isolate;
+    max-width:62ch;
+  }
+  @media (max-width:860px){
+    .hero{padding-block:36px 24px;}
+  }
+  .co-watermark{
+    position:absolute;
+    left:-6%;
+    top:50%;
+    transform:translateY(-50%);
+    width:46%;
+    max-width:520px;
+    opacity:.24;
+    z-index:-1;
+    pointer-events:none;
+    -webkit-user-drag:none;
+  }
+  @media (max-width:860px){.co-watermark{display:none;}}
+  .co-badge{
+    display:inline-flex;flex-direction:column;gap:6px;
+    background:#04122c;
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 18px 10px;
+    margin-bottom:18px;
+  }
+  .co-badge .row{
+    display:flex;align-items:center;gap:8px;
+    font-family:var(--font-display);font-weight:600;font-size:.82rem;
+    color:var(--ink);
+  }
+  .co-badge .ring{
+    width:14px;height:14px;flex:none;
+  }
+  .co-badge .flag{
+    height:3px;border-radius:2px;
+    background:linear-gradient(to right,
+      #FCD116 0 50%, #003893 50% 75%, #CE1126 75% 100%);
+  }
+  .hero h1{
+    font-size:clamp(1.3rem,2.4vw,1.7rem);
+    line-height:1.28;
+    margin-top:14px;
+    color:var(--ink);
+  }
+  .hero .convocado{
+    margin-top:16px;
+    color:var(--cyan);
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.08rem;
+    max-width:52ch;
+  }
+  .hero .lede{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:.96rem;
+    max-width:52ch;
+  }
+  .cta-row{
+    display:flex;flex-wrap:wrap;gap:14px;
+    margin-top:30px;align-items:center;
+  }
+  .btn{
+    font-family:var(--font-display);font-weight:700;font-size:.9rem;
+    letter-spacing:.03em;text-transform:uppercase;
+    padding:15px 30px;
+    border-radius:999px;
+    border:1px solid var(--cyan);
+    background:var(--cyan);
+    color:#00121e;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{box-shadow:0 0 22px rgba(25,188,232,.45);}
+  .btn:focus-visible{outline:2px solid var(--glow);outline-offset:3px;}
+  .btn.ghost{
+    background:transparent;color:var(--ink);border:1px solid var(--line);
+  }
+  .btn.ghost:hover{border-color:var(--cyan);}
+  .hero-note{
+    font-family:var(--font-data);font-size:.72rem;color:var(--muted);
+    letter-spacing:.05em;
+  }
+  section{padding-block:44px;}
+  .section-head{max-width:62ch;margin-bottom:30px;}
+  .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-top:10px;}
+  .copy-grid{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;
+  }
+  @media (max-width:860px){.copy-grid{grid-template-columns:1fr;gap:28px;}}
+  .copy-grid p{color:var(--ink);font-size:1.02rem;}
+  .copy-grid p + p{margin-top:16px;}
+  .copy-grid .aside{color:var(--muted);font-size:.92rem;}
+  .pull{
+    font-family:var(--font-display);font-weight:600;font-size:1.28rem;
+    line-height:1.4;color:var(--ink);
+    border-left:2px solid var(--cyan);padding-left:18px;
+  }
+  .stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:2px;overflow:hidden;
+  }
+  @media (max-width:640px){.stats{grid-template-columns:1fr;}}
+  .stat{
+    background:var(--panel);
+    padding:26px 22px;
+  }
+  .stat .num{
+    font-family:var(--font-data);font-size:2.3rem;color:var(--cyan);
+    line-height:1;
+  }
+  .stat .lab{
+    margin-top:10px;color:var(--muted);font-size:.86rem;line-height:1.5;
+  }
+  .detail{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--line);border-radius:2px;overflow:hidden;
+  }
+  @media (max-width:720px){.detail{grid-template-columns:1fr;}}
+  .detail > div{
+    padding:24px 22px;border-left:1px solid var(--line);
+  }
+  .detail > div:first-child{border-left:none;}
+  @media (max-width:720px){.detail > div{border-left:none;border-top:1px solid var(--line);}
+    .detail > div:first-child{border-top:none;}}
+  .detail .k{
+    font-family:var(--font-data);font-size:.66rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .detail .v{
+    margin-top:8px;font-family:var(--font-display);font-weight:600;font-size:1.05rem;
+  }
+  .detail .v small{
+    display:block;font-family:var(--font-body);font-weight:400;color:var(--muted);
+    font-size:.82rem;margin-top:3px;
+  }
+  .exclusivity{
+    margin-top:22px;
+    font-family:var(--font-data);font-size:.78rem;color:var(--muted);
+    letter-spacing:.02em;
+  }
+  .exclusivity strong{color:var(--ink);font-weight:400;}
+  #confirmar{
+    scroll-margin-top:24px;
+  }
+  .ticketcode-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:4px;
+    padding:clamp(10px,2vw,20px);
+    overflow:hidden;
+    max-width:680px;
+    margin-inline:auto;
+  }
+  .ticketcode-card iframe{
+    display:block;width:100%;border:none;background:transparent;border-radius:2px;
+  }
+  footer{
+    border-top:1px solid var(--line);
+    padding-block:34px 46px;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .foot-row{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-family:var(--font-data);font-size:.74rem;color:var(--muted);
+  }
+  .foot-legal{
+    font-size:.72rem;color:var(--muted);max-width:70ch;line-height:1.6;
+  }
+  [hidden]{display:none!important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <img class="brand-logo" src="assets/logo_transparent.png" alt="Scenario Zero — Cyber Security Exercise" width="92" height="92">
+    <div class="institutional-zone">
+      <img class="mintic-seal" src="assets/mintic_logo_white.png" alt="Ministerio de Tecnologías de la Información y las Comunicaciones de Colombia" width="46" height="50">
+    </div>
+  </header>
+  <svg class="pulse" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,23 L280,23 L305,6 L325,40 L345,14 L365,23 L520,23 L540,23 L560,23 L620,23 L645,4 L668,42 L690,20 L712,23 L1000,23"/>
+  </svg>
+  <main>
+    <section class="hero">
+      <img class="co-watermark" src="assets/colombia_filled.png" alt="" aria-hidden="true">
+      <div>
+        <div class="co-badge">
+          <div class="row">
+            <svg class="ring" viewBox="0 0 40 40" aria-hidden="true">
+              <circle cx="20" cy="8" r="3" fill="#19bce8"/>
+              <circle cx="30" cy="12" r="2.4" fill="#19bce8"/>
+              <circle cx="35" cy="20" r="3" fill="#19bce8"/>
+              <circle cx="30" cy="28" r="2.4" fill="#19bce8"/>
+              <circle cx="20" cy="32" r="3" fill="#19bce8"/>
+              <circle cx="10" cy="28" r="2.4" fill="#19bce8"/>
+              <circle cx="5" cy="20" r="3" fill="#19bce8"/>
+              <circle cx="10" cy="12" r="2.4" fill="#19bce8"/>
+            </svg>
+            Colombia
+          </div>
+          <div class="flag"></div>
+        </div>
+        <div class="eyebrow big">1 desayuno · 12 invitados</div>
+        <h1>Simulacro nacional de gestión ante crisis cibernética</h1>
+        <p class="convocado">Convocado por el Ministerio TIC de Colombia</p>
+        <p class="lede">No vamos a describirle el evento. Le vamos a mostrar dónde puede sentarse.</p>
+        <div class="cta-row">
+          <button class="btn" id="btn-reservar">Reserve su mesa</button>
+          <a class="btn ghost" href="#detalle">Ver detalles del desayuno</a>
+        </div>
+        <p class="hero-note">Solo por invitación</p>
+      </div>
+    </section>
+    <svg class="pulse" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,23 L150,23 L172,7 L192,39 L212,15 L232,23 L560,23 L582,3 L602,43 L622,18 L642,23 L1000,23"/>
+    </svg>
+    <section id="detalle">
+      <div class="copy-grid">
+        <div>
+          <p class="pull">Scenario Zero es el primer ejercicio nacional de gestión de crisis cibernética, convocado por el Ministerio de Tecnologías de la Información y las Comunicaciones.</p>
+        </div>
+        <div>
+          <p>En este desayuno no le vamos a describir el evento. Le vamos a mostrar exactamente dónde puede sentarse y qué va a ver desde ahí.</p>
+          <p class="aside">20 cupos en total para aliados, 34 posiciones. Algunas ya están separadas. Confirme su asistencia — el aforo es limitado y solo por invitación.</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">20</div>
+          <div class="lab">Cupos en total para aliados</div>
+        </div>
+        <div class="stat">
+          <div class="num">34</div>
+          <div class="lab">Posiciones en el salón oval, algunas ya están separadas</div>
+        </div>
+        <div class="stat">
+          <div class="num">12</div>
+          <div class="lab">Invitados en esta mesa de desayuno. Ni uno más. Evento privado, solo por invitación</div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="section-head">
+        <h2>Los datos que confirma al llegar</h2>
+      </div>
+      <div class="detail">
+        <div>
+          <div class="k">Fecha</div>
+          <div class="v">Martes 13 de octubre de 2026</div>
+        </div>
+        <div>
+          <div class="k">Hora</div>
+          <div class="v">7:00 a.m.</div>
+        </div>
+        <div>
+          <div class="k">Lugar</div>
+          <div class="v">Centro de Conocimiento<small>Calle 59 No. 6 – 36, Piso 2 · Bogotá</small></div>
+        </div>
+      </div>
+      <p class="exclusivity">Doce invitados. <strong>No hay lista de espera para esta mesa</strong> — hay confirmación o hay ausencia.</p>
+    </section>
+    <svg class="pulse" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,23 L400,23 L420,10 L440,36 L460,20 L480,23 L1000,23"/>
+    </svg>
+    <section id="confirmar">
+      <div class="section-head">
+        <div class="eyebrow">Confirmación de asistencia</div>
+        <h2>Reserve su mesa</h2>
+      </div>
+      <div class="ticketcode-card">
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js" integrity="sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://www.ticketcode.co/assets/ticketcode/ticketcode-iframe.js"></script>
+        <iframe id="iframe_ticketcode" type="text/html" height="600" width="100%" src="https://www.ticketcode.co/iframe/invitacion-desayuno-scenario-zero" style="border:transparent" scrolling="no"></iframe>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="foot-row">
+      <span>SCENARIO ZERO — Ejercicio: Bogotá, 12 de noviembre de 2026</span>
+      <span>Desayuno: Centro de Conocimiento, Calle 59 No. 6 – 36, Piso 2</span>
+    </div>
+    <p class="foot-legal">Scenario Zero es un ejercicio convocado por el Ministerio de Tecnologías de la Información y las Comunicaciones. Este desayuno es un espacio de convocatoria de Scenario Zero para aliados potenciales; no constituye un acto del Ministerio.</p>
+  </footer>
+</div>
+<script>
+(function(){
+  try{
+    document.getElementById('btn-reservar').addEventListener('click', function(){
+      document.getElementById('confirmar').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
